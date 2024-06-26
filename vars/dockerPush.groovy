@@ -9,7 +9,7 @@ def call(String imageName, String registry = '', String credentialsId = '') {
 }
 
 class DockerUtils {
-    static void push(String imageName, String registry = '', String username = '', String password = '') {
+    static void push(String imageName, String registry = 'https://hub.docker.com/repositories/henrykingiv', String username = 'docker-username', String password = 'docker-password') {
         if (registry) {
             imageName = "${registry}/${imageName}"
         }
