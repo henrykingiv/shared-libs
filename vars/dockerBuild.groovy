@@ -1,4 +1,4 @@
-def call(String imageName, String context = ','){
+def call(String imageName, String context = '.'){
   dockerBuild(imageName, context)
 }
 
