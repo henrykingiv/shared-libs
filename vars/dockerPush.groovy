@@ -1,10 +1,11 @@
-def call(String imageName, String registry = '', String credentialsId = '') {
-    if (credentialsId) {
-        withCredentials([usernamePassword(credentialsId: credentialsId, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-            DockerUtils.push(imageName, registry, env.DOCKER_USERNAME, env.DOCKER_PASSWORD)
-        }
-    } else {
-        DockerUtils.push(imageName, registry)
+def call(String credentialsId = 'docker-creds', String registry = '') {
+    withCredentials([usernamePassword(credentialsId: credentialsId, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+        echo "Logging into Docker registry: ${registry} with username: ${env.DOCKER_USERNAME}"
+        sh """
+            echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin ${registry}
+            sh "echo ${password} | docker login -u ${username} --password-stdin ${registry}"
+            sh "docker push ${imageName}"
+        """
     }
 }
 
