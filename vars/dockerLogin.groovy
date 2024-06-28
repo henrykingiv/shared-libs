@@ -1,3 +1,3 @@
-def call(String docker-username = '', String registry = '', String docker-password = '') {
-  sh 'docker login --username ${docker-username} --password ${docker-password} ${registry}'
+def call(String dockerUsername = '', String registry = '', String dockerPassword = '') {
+  sh "docker login --username ${dockerUsername} --password ${dockerPassword} ${registry}"
 }
