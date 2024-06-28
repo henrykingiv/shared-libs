@@ -2,7 +2,7 @@ def call(String imageName, String credentialsId = '', String registry = '') {
     withCredentials([usernamePassword(credentialsId: credentialsId, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
         echo "Logging into Docker registry: ${registry} with username: ${env.DOCKER_USERNAME}"
         sh """
-            echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin ${registry}
+            echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin $registry
         """
     }
 }
@@ -14,10 +14,10 @@ class DockerUtils {
         }
 
         if (username && password) {
-            sh "echo ${password} | docker login -u ${username} --password-stdin ${registry}"
+            sh "echo $password | docker login -u $username --password-stdin $registry"
         }
 
-        sh "docker push ${imageName}"
+        sh "docker push $imageName"
     }
 
     private static void sh(String script) {
