@@ -1,4 +1,4 @@
-def call(String imageName, String credentialsId = '', String registry = '') {
+def call(String imageName, String credentialsId = 'docker-creds', String registry = 'https://index.docker.io/v1/') {
     withCredentials([usernamePassword(credentialsId: credentialsId, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
         echo "Logging into Docker registry: ${registry} with username: ${env.DOCKER_USERNAME}"
         sh """
@@ -8,7 +8,7 @@ def call(String imageName, String credentialsId = '', String registry = '') {
 }
 
 class DockerUtils {
-    static void push(String imageName, String registry = 'https://hub.docker.com/repositories/henrykingiv', String username, String password) {
+    static void push(String imageName, String registry = 'https://index.docker.io/v1/', String username, String password) {
         if (registry) {
             imageName = "${registry}/${imageName}"
         }
