@@ -1,4 +1,4 @@
-def call(String credentialsId = 'docker-creds', String registry = '') {
+def call(String credentialsId = '', String registry = '') {
     withCredentials([usernamePassword(credentialsId: credentialsId, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
         echo "Logging into Docker registry: ${registry} with username: ${env.DOCKER_USERNAME}"
         sh """
