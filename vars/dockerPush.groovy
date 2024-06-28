@@ -9,22 +9,22 @@ def call(String credentialsId = 'docker-creds', String registry = '') {
     }
 }
 
-class DockerUtils {
-    static void push(String imageName, String registry = '', String username = '', String password = '') {
-        if (registry) {
-            imageName = "${registry}/${imageName}"
-        }
+// class DockerUtils {
+//     static void push(String imageName, String registry = '', String username = '', String password = '') {
+//         if (registry) {
+//             imageName = "${registry}/${imageName}"
+//         }
 
-        if (username && password) {
-            sh "echo ${password} | docker login -u ${username} --password-stdin ${registry}"
-        }
+//         if (username && password) {
+//             sh "echo ${password} | docker login -u ${username} --password-stdin ${registry}"
+//         }
 
-        sh "docker push ${imageName}"
-    }
+//         sh "docker push ${imageName}"
+//     }
 
-    private static void sh(String script) {
-        // This is a placeholder for the actual Jenkins sh step
-        // In a Jenkins context, this would be executed as a shell script
-        println "Executing shell script: ${script}"
-    }
-}
+//     private static void sh(String script) {
+//         // This is a placeholder for the actual Jenkins sh step
+//         // In a Jenkins context, this would be executed as a shell script
+//         println "Executing shell script: ${script}"
+//     }
+// }
