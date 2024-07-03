@@ -5,6 +5,7 @@ def call(String imageName, String credentialsId = 'docker-creds', String registr
             echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin $registry
         """
     }
+    DockerUtils.push(imageName, registry, env.DOCKER_USERNAME, password)
 }
 
 class DockerUtils {
