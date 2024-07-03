@@ -5,19 +5,12 @@ def call(String imageName, String credentialsId = 'docker-creds', String registr
             echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin $registry
         """
     }
-    DockerUtils.push(imageName, registry, env.DOCKER_USERNAME, password)
+    DockerUtils.push(imageName);
 }
 
 class DockerUtils {
-    static void push(String imageName, String registry = 'https://hub.docker.com/repositories/henrykingiv', String username, String password) {
-        if (registry) {
-            imageName = "${registry}/${imageName}"
-        }
-
-        if (username && password) {
-            sh "echo $password | docker login -u $username --password-stdin $registry"
-        }
-
+    static void push(String imageName) {
+        
         sh "docker push $imageName"
     }
 
